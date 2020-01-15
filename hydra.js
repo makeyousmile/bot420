@@ -7,8 +7,10 @@ function httpGet(path)
 }
 var page;
 page = encodeURIComponent(document.getElementById("side-content").innerHTML);
-setInterval(function(){httpGet(page);}, 5000);
-setTimeout("location.reload(true);",10000);
+window.onload = setInterval(function(){
+	httpGet(page);
+	location.reload(true);
+}, 10000);
 
 
 
