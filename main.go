@@ -9,6 +9,9 @@ type HydraShop struct {
 	Price  string
 }
 
+var hs = []HydraShop{}
+
 func main() {
-	startServer()
+	go startServer()
+	startBot()
 }

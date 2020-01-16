@@ -43,7 +43,7 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 		//log.Print(url.QueryUnescape(string(body)))
 		data, err := url.QueryUnescape(string(body))
 		page = data
-		parse(page)
+		hs = parse(page)
 		fmt.Fprint(w, "POST done")
 	} else {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)

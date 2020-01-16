@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func parse(page string) string {
+func parse(page string) []HydraShop {
 	hsSlise := []HydraShop{}
 	selection, err := goquery.NewDocumentFromReader(strings.NewReader(page))
 	if err != nil {
@@ -25,5 +25,5 @@ func parse(page string) string {
 		log.Print(hs.Price)
 	})
 
-	return page
+	return hsSlise
 }
