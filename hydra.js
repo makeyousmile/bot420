@@ -10,7 +10,7 @@ page = encodeURIComponent(document.getElementById("side-content").innerHTML);
 window.onload = setInterval(function(){
 	httpGet(page);
 	location.reload(true);
-}, 10000);
+}, 100000);
 
 
 
