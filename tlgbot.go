@@ -28,23 +28,31 @@ func startBot() {
 		typing := tgbotapi.NewChatAction(update.Message.Chat.ID, "typing")
 		bot.Send(typing)
 		if update.Message.Command() == "go" {
-			for _, row := range hs {
+			for i, row := range hs {
 
-				msgtext := "<b>" + row.Title + "</b> Цена:<b>" + row.Price + "</b> " + row.Text + " " + row.Market
+				msgtext := "<b>" + row.Title + "</b> Цена:<b>" + row.Price + ".</b> " + row.Market
 				msg := tgbotapi.NewMessage(update.Message.Chat.ID, msgtext)
 				msg.ParseMode = "HTML"
 				//msg.ReplyToMessageID = update.Message.MessageID
 				bot.Send(msg)
+
+				if i == len(hs)-1 {
+					msgtext := "Последние обновление: " + hs[i].UpdateTime.Format("2006-01-02 15:04:05")
+					msg := tgbotapi.NewMessage(update.Message.Chat.ID, msgtext)
+					msg.ParseMode = "HTML"
+					bot.Send(msg)
+
+				}
 			}
 
 		}
 		if update.Message.Command() == "start" {
-			msgtxt := "Привет. Отправь мне команду /go и получи список фильмов в прокате города Могилева. "
+			msgtxt := "Привет. Отправь мне команду /go и получи список доступных предложений. "
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, msgtxt)
 			bot.Send(msg)
 		}
 		if update.Message.Command() == "help" {
-			msgtxt := "help"
+			msgtxt := "помоги себе сам"
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, msgtxt)
 			msg.ReplyToMessageID = update.Message.MessageID
 			bot.Send(msg)
